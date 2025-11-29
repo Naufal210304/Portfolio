@@ -49,7 +49,7 @@ const App = () => {
             Di sini kamu bisa menemukan project, skill, dan sedikit cerita tentang perjalanan saya sebagai developer.
           </p>
           <a
-            href="/hero"
+            href="/main"
             className="hover:border-blue-400 border-2 text-white font-semibold py-3 px-8 rounded-full  text-lg shadow-lg transition duration-200"
             style={{ textDecoration: 'none' }}
           >

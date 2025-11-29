@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-left: 70px; /* sesuaikan lebar sidebar */
+}
+
+::-webkit-scrollbar {
+  width: 0;       /* Menghilangkan scrollbar vertikal */
+  height: 0;
+}
+  

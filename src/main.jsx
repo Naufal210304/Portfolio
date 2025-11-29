@@ -3,7 +3,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
-import Hero from './Pages/Hero.jsx';
+import Main from './Pages/MainLayout.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 createRoot(document.getElementById('root')).render(
@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/hero" element={<Hero />} />
+        <Route path="/main" element={<Main />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

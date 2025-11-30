@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const SkillsSection = () => {
   // Data skill + persentase
@@ -11,8 +13,33 @@ const SkillsSection = () => {
     { name: "Bootstrap", level: 65 },
   ];
 
+  const sectionRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animasi untuk setiap progress bar
+      gsap.utils.toArray('.progress-bar').forEach(bar => {
+        const width = bar.style.width; // Ambil lebar akhir dari style
+        gsap.fromTo(bar, 
+          { width: '0%' }, // Mulai dari 0%
+          { 
+            width: width, // Animasikan ke lebar akhir
+            duration: 1.5,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: bar,
+              start: 'top 90%', // Mulai saat bar terlihat 90%
+              toggleActions: 'play none none none',
+            }
+          }
+        );
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="min-h-screen flex flex-col justify-center max-w-[1200px] mx-auto px-8 py-16">
+    <section ref={sectionRef} className="min-h-screen flex flex-col justify-center max-w-[1200px] mx-auto px-8 py-16">
       
       {/* Pseudo-element divider */}
       <div className="flex items-center mb-12">
@@ -34,7 +61,7 @@ const SkillsSection = () => {
             {/* Progress bar */}
             <div className="w-full max-w-[1100px] h-4 bg-white/20 rounded-full">
               <div
-                className="h-4 bg-[#38bdf8] rounded-full"
+                className="progress-bar h-4 bg-[#38bdf8] rounded-full"
                 style={{ width: `${skill.level}%` }}
               ></div>
             </div>

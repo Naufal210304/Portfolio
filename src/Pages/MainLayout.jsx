@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import Sidebar from "../Components/Sidebar.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -6,6 +6,12 @@ import HeroSection from "../Components/Section/HeroSection.jsx";
 import AboutSection from "../Components/Section/AboutSection.jsx";
 import SkillsSection from "../Components/Section/SkillSection.jsx";
 import ProjectsSection from "../Components/Section/ProjectsSection.jsx";
+import ContactSection from "../Components/Section/ContactSection.jsx";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Daftarkan plugin ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 const MainLayout = () => {
   return (
@@ -24,6 +30,7 @@ const MainLayout = () => {
           <AboutSection />
           <SkillsSection />
           <ProjectsSection />
+          <ContactSection />
         </div>
       </main>
     </div>

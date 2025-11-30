@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 const ProjectsSection = () => {
   // Data project
@@ -23,9 +26,30 @@ const ProjectsSection = () => {
     },
   ];
 
+  const sectionRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animasi untuk setiap kartu proyek
+      gsap.from(".project-card", {
+        opacity: 0,
+        y: 50,
+        scale: 0.95,
+        duration: 0.5,
+        stagger: 0.2, // Efek muncul satu per satu
+        scrollTrigger: {
+          trigger: ".projects-grid",
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
-      id="projects"
+      id="projects" ref={sectionRef}
       className="min-h-screen flex flex-col justify-center max-w-[1200px] mx-auto px-8 py-16"
     >
       {/* Pseudo-element divider */}
@@ -39,11 +63,11 @@ const ProjectsSection = () => {
       </div>
 
       {/* Konten Project */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+      <div className="projects-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
         {projects.map((project, idx) => (
           <div
             key={idx}
-            className="bg-[#111] rounded-xl p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow duration-300"
+            className="project-card bg-[#111] rounded-xl p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow duration-300"
           >
             {/* Image project */}
             <div className="h-40 w-full bg-gray-800 rounded-md overflow-hidden">

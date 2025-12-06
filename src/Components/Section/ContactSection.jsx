@@ -44,10 +44,10 @@ const ContactSection = () => {
     >
       {/* Divider */}
       <div className="flex items-center mb-12">
-        <div className="flex-1 h-[2px] bg-white/20"></div>
         <span className="px-4 text-white font-bold text-6xl">
           Contact<span className="text-[#38bdf8]">.</span>
         </span>
+        <div className="flex-1 h-[2px] bg-white/20"></div>
       </div>
 
       {/* Konten: Kolom Kiri (Info) dan Kolom Kanan (Form) */}
@@ -108,7 +108,7 @@ const ContactSection = () => {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="px-8 py-3 bg-[#38bdf8] text-black font-bold rounded-lg hover:bg-[#22d3ee] transition-all duration-300 w-auto"
+                className="px-8 py-3 bg-[#38bdf8] text-black font-bold rounded-lg hover:bg-[#22d3ee] transition-all duration-300 w-auto cursor-pointer"
               >
                 Send Message
               </button>

@@ -12,18 +12,7 @@ const AboutSection = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Animasi Parallax untuk background
-      gsap.to(bgRef.current, {
-        yPercent: 20, // Bergerak ke bawah 20% saat scroll
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom", // Mulai saat bagian atas section menyentuh bagian bawah viewport
-          end: "bottom top", // Selesai saat bagian bawah section menyentuh bagian atas viewport
-          scrub: true, // Membuat animasi mengikuti scroll
-        },
-      });
-
+      // Hapus animasi parallax GSAP, kita akan menggunakan CSS murni.
       // Animasi Fade-in + Slide-up untuk konten
       gsap.from(contentRef.current, {
         opacity: 0,
@@ -45,7 +34,7 @@ const AboutSection = () => {
       {/* Background full */}
       <div
         ref={bgRef}
-        className="absolute inset-0 bg-center bg-cover"
+        className="absolute inset-0 bg-center bg-cover bg-fixed"
         style={{ backgroundImage: `url(${AboutBg})` }}
       ></div>
 

@@ -11,7 +11,7 @@ const HeroSection = () => {
         {/* Social icons kiri */}
         <div className="flex gap-4 items-center">
           <a
-            href="https://instagram.com"
+            href="https://instagram.com/m.naufall21"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-[#38bdf8] transition-colors duration-300"

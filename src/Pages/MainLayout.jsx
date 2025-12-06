@@ -6,6 +6,7 @@ import HeroSection from "../Components/Section/HeroSection.jsx";
 import AboutSection from "../Components/Section/AboutSection.jsx";
 import SkillsSection from "../Components/Section/SkillSection.jsx";
 import ProjectsSection from "../Components/Section/ProjectsSection.jsx";
+import Certifications from "../Components/Section/Certifications.jsx";
 import ContactSection from "../Components/Section/ContactSection.jsx";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -29,6 +30,7 @@ const MainLayout = () => {
           <HeroSection />
           <AboutSection />
           <SkillsSection />
+          <Certifications />
           <ProjectsSection />
           <ContactSection />
         </div>

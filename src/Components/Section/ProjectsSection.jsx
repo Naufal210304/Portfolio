@@ -1,28 +1,30 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import Image1 from '../../Assets/Dashboard.png';
+import Image2 from '../../Assets/Wedding.jpg';
+import Image3 from '../../Assets/Portfolio.png';
 
 const ProjectsSection = () => {
   // Data project
   const projects = [
     {
-      image: "/images/project1.jpg", // path image atau import
-      title: "Project 1",
-      description: "Deskripsi singkat project ini. Bisa diisi sesuai project yang kamu buat.",
-      tools: ["React", "Tailwind"],
+      image: Image1, // Hapus kurung kurawal agar menjadi variabel langsung
+      title: "Smart Online Queue Management System",
+      description: "Sistem antrian online real-time yang efisien, memungkinkan pengguna mengambil dan memantau posisi antrian dari jarak jauh. Mengoptimalkan pengalaman pelanggan dengan React dan desain responsif TailwindCSS.",
+      tools: ["React", "TailwindCSS"],
     },
     {
-      image: "/images/project2.jpg",
-      title: "Project 2",
-      description: "Deskripsi singkat project ini. Bisa diisi sesuai project yang kamu buat.",
-      tools: ["HTML", "CSS", "JavaScript"],
+      image: Image2, // Hapus kurung kurawal
+      title: "Wedding Invitation",
+      description: "Undangan pernikahan digital interaktif dengan fitur RSVP dan peta. Menggunakan React dan TailwindCSS, diperkaya dengan Framer Motion untuk efek animasi yang mewah dan elegan.",
+      tools: ["React", "TailwindCSS", "Framer Motion"],
     },
     {
-      image: "/images/project3.jpg",
-      title: "Project 3",
-      description: "Deskripsi singkat project ini. Bisa diisi sesuai project yang kamu buat.",
-      tools: ["React", "Bootstrap"],
+      image: Image3, // Hapus kurung kurawal
+      title: "Portfolio",
+      description: "Situs portfolio profesional berkinerja tinggi. Dibangun dengan React dan TailwindCSS, memanfaatkan GSAP untuk menciptakan animasi scroll dan transisi yang halus dan dinamis, memberikan pengalaman pengguna yang menawan.",
+      tools: ["React", "TailwindCSS", "GSAP"],
     },
   ];
 
@@ -54,12 +56,12 @@ const ProjectsSection = () => {
     >
       {/* Pseudo-element divider */}
       <div className="flex items-center mb-12">
+        {/* Garis ke kiri */}
+        <div className="flex-1 h-[2px] bg-white/20"></div>
         {/* Teks di kanan */}
         <span className="px-4 text-white font-bold text-6xl">
           Projects<span className="text-[#38bdf8]">.</span>
         </span>
-        {/* Garis ke kiri */}
-        <div className="flex-1 h-[2px] bg-white/20"></div>
       </div>
 
       {/* Konten Project */}
@@ -98,7 +100,7 @@ const ProjectsSection = () => {
       {/* View More di bawah kanan */}
       <div className="flex justify-end">
         <a
-          href="#"
+          href="/projects"
           className="text-[#38bdf8] font-bold text-lg border-b-2 border-[#38bdf8] hover:text-white hover:border-white transition-colors duration-300"
         >
           View More

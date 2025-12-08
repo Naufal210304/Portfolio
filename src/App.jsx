@@ -3,8 +3,6 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadLinksPreset } from "@tsparticles/preset-links";
 import { Link } from "react-router-dom";
 
-
-
 const App = () => {
   const [init, setInit] = useState(false);
 

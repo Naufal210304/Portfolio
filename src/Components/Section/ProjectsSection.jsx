@@ -101,7 +101,7 @@ const ProjectsSection = () => {
       {/* View More di bawah kanan */}
       <div className="flex justify-end">
         <Link
-          href="/projects"
+          to="/projects"
           className="text-[#38bdf8] font-bold text-lg border-b-2 border-[#38bdf8] hover:text-white hover:border-white transition-colors duration-300"
         >
           View More

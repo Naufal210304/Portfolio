@@ -10,7 +10,7 @@ import Projects from './Pages/Projects.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter basename="/Portfolio">
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Splash />} />
         <Route path="/landing" element={<App />} />

@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image1 from '../../Assets/Dashboard.png';
 import Image2 from '../../Assets/Wedding.jpg';
 import Image3 from '../../Assets/Portfolio.png';
+import { Link } from 'react-router-dom';
 
 const ProjectsSection = () => {
   // Data project
@@ -99,12 +100,12 @@ const ProjectsSection = () => {
 
       {/* View More di bawah kanan */}
       <div className="flex justify-end">
-        <a
+        <Link
           href="/projects"
           className="text-[#38bdf8] font-bold text-lg border-b-2 border-[#38bdf8] hover:text-white hover:border-white transition-colors duration-300"
         >
           View More
-        </a>
+        </Link>
       </div>
     </section>
   );

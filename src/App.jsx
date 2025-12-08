@@ -48,13 +48,9 @@ const App = () => {
           <p className="text-white text-lg md:text-2xl mb-8 text-center max-w-xl drop-shadow">
             Di sini kamu bisa menemukan project, skill, dan sedikit cerita tentang perjalanan saya sebagai developer.
           </p>
-          <a
-            href="/main"
-            className="hover:border-blue-400 border-2 text-white font-semibold py-3 px-8 rounded-full  text-lg shadow-lg transition duration-200"
-            style={{ textDecoration: 'none' }}
-          >
+          <Link to="/main" className="hover:border-blue-400 border-2 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg transition duration-200">
             Explore Now
-          </a>
+          </Link>
         </div>
       </div>
     );

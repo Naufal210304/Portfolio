@@ -1,8 +1,7 @@
-import React, { useLayoutEffect } from "react";
-import Sidebar from "../Components/Sidebar.jsx";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import React from "react";
+import Navbar from "../Components/Navbar.jsx";
 import HeroSection from "../Components/Section/HeroSection.jsx";
+import MobileBottomNavbar from "../Components/MobileBottomNavbar.jsx"; // Akan dibuat nanti
 import AboutSection from "../Components/Section/AboutSection.jsx";
 import SkillsSection from "../Components/Section/SkillSection.jsx";
 import ProjectsSection from "../Components/Section/ProjectsSection.jsx";
@@ -16,17 +15,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 const MainLayout = () => {
   return (
-    <div className="min-h-screen flex bg-[#050505] text-white overflow-x-hidden">
-      {/* Sidebar kiri */}
-      <aside className="w-[38px] shrink-0">
-        <Sidebar />
-      </aside>
+    <div className="min-h-screen bg-[#050505] text-white">
+      {/* Desktop Navbar */}
+      <Navbar /> {/* Navbar akan diadaptasi menjadi Desktop Navbar */}
 
       {/* Konten utama di kanan */}
-      <main className="flex-1 relative">
-        {/* Header atas (social + button) */}
-        {/* Wrapper konten biar gak ketabrak header */}
-        <div className="px-8">
+      <main className="relative overflow-x-hidden"> {/* overflow-x-hidden untuk horizontal scroll */}
+        {/* Menghapus padding horizontal agar section bisa full width */}
+        <div className="w-full"> 
           <HeroSection />
           <AboutSection />
           <SkillsSection />
@@ -34,6 +30,9 @@ const MainLayout = () => {
           <ProjectsSection />
           <ContactSection />
         </div>
+
+        {/* Mobile Bottom Navbar */}
+        <MobileBottomNavbar />
       </main>
     </div>
   );

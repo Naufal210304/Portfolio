@@ -1,62 +1,65 @@
-import React, { useLayoutEffect, useRef } from 'react';
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image1 from '../../Assets/Dashboard.png';
-import Image2 from '../../Assets/Wedding.jpg';
-import Image3 from '../../Assets/Portfolio.png';
-import { Link } from 'react-router-dom';
+import React, { useRef, useLayoutEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Daftarkan plugin ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
+import projectsData from '../../data/projectsData'; // Impor data proyek
 
 const ProjectsSection = () => {
-  // Data project
-  const projects = [
-    {
-      image: Image1, // Hapus kurung kurawal agar menjadi variabel langsung
-      title: "Smart Online Queue Management System",
-      description: "Sistem antrian online real-time yang efisien, memungkinkan pengguna mengambil dan memantau posisi antrian dari jarak jauh. Mengoptimalkan pengalaman pelanggan dengan React dan desain responsif TailwindCSS.",
-      tools: ["React", "TailwindCSS"],
-    },
-    {
-      image: Image2, // Hapus kurung kurawal
-      title: "Wedding Invitation",
-      description: "Undangan pernikahan digital interaktif dengan fitur RSVP dan peta. Menggunakan React dan TailwindCSS, diperkaya dengan Framer Motion untuk efek animasi yang mewah dan elegan.",
-      tools: ["React", "TailwindCSS", "Framer Motion"],
-    },
-    {
-      image: Image3, // Hapus kurung kurawal
-      title: "Portfolio",
-      description: "Situs portfolio profesional berkinerja tinggi. Dibangun dengan React dan TailwindCSS, memanfaatkan GSAP untuk menciptakan animasi scroll dan transisi yang halus dan dinamis, memberikan pengalaman pengguna yang menawan.",
-      tools: ["React", "TailwindCSS", "GSAP"],
-    },
-  ];
-
   const sectionRef = useRef(null);
+  const scrollRef = useRef(null);
+  const triggerRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Animasi untuk setiap kartu proyek
-      gsap.from(".project-card", {
-        opacity: 0,
-        y: 50,
-        scale: 0.95,
-        duration: 0.5,
-        stagger: 0.2, // Efek muncul satu per satu
+      const sections = gsap.utils.toArray(".project-card-horizontal");
+      const totalWidth = sections.reduce((acc, section) => acc + section.offsetWidth + 32, 0); // 32px for gap-8
+
+      const scrollTween = gsap.to(sections, {
+        x: () => `-${totalWidth - window.innerWidth}`, // Scroll sampai akhir total lebar kartu
+        ease: "none",
         scrollTrigger: {
-          trigger: ".projects-grid",
-          start: "top 85%",
-          toggleActions: "play none none none",
+          trigger: triggerRef.current,
+          pin: true,
+          scrub: 1,
+          start: "top top",
+          end: () => `+=${totalWidth}`, // Durasi scroll sama dengan total lebar kartu
+          invalidateOnRefresh: true,
         },
       });
+
+      // Animasi fade-in untuk setiap kartu proyek saat muncul
+      sections.forEach((card) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 50, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: scrollTween,  // Mengaitkan dengan animasi horizontal
+              start: "left 80%", // Mulai animasi saat kartu masuk 80% dari kiri
+              end: "left 20%",   // Akhiri animasi saat kartu keluar 20% dari kiri
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+
     }, sectionRef);
+
     return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      id="projects" ref={sectionRef}
-      className="min-h-screen flex flex-col justify-center max-w-[1200px] mx-auto px-8 py-16"
-    >
+    <section id="projects" ref={sectionRef} className="h-screen w-full flex flex-col justify-center py-16">
       {/* Pseudo-element divider */}
-      <div className="flex items-center mb-12">
+      <div className="flex items-center mb-12 px-8 md:px-16 lg:px-24">
         {/* Garis ke kiri */}
         <div className="flex-1 h-[2px] bg-white/20"></div>
         {/* Teks di kanan */}
@@ -65,47 +68,27 @@ const ProjectsSection = () => {
         </span>
       </div>
 
-      {/* Konten Project */}
-      <div className="projects-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-        {projects.map((project, idx) => (
-          <div
-            key={idx}
-            className="project-card bg-[#111] rounded-xl p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow duration-300"
-          >
-            {/* Image project */}
-            <div className="h-40 w-full bg-gray-800 rounded-md overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
+      {/* Konten Project - Horizontal Scroll */}
+      <div ref={triggerRef} className="relative w-full h-[500px]"> {/* Tinggi disesuaikan */}
+        <div ref={scrollRef} className="flex flex-row gap-8 items-center h-full">
+          {projectsData.map((project) => (
+            <div
+              key={project.id}
+              className="project-card-horizontal flex-none w-[300px] h-[400px]
+                         bg-white/10 backdrop-blur-md rounded-xl p-6 flex flex-col justify-center items-center
+                         border border-white/20 shadow-lg"
+              style={{ boxShadow: '0 0 15px rgba(56, 189, 248, 0.2)' }}
+            >
+              <h3 className="text-white text-2xl font-bold mb-4">{project.title}</h3>
+              <p className="text-gray-400 text-center">
+                Description for {project.title}. This is a placeholder.
+              </p>
+              <button className="mt-auto px-4 py-2 bg-[#38bdf8] text-black font-bold rounded-lg hover:bg-[#22d3ee] transition-all duration-300">
+                View Details
+              </button>
             </div>
-
-            <h3 className="text-white text-xl font-bold">{project.title}</h3>
-            <p className="text-gray-400 text-sm">{project.description}</p>
-
-            <div className="flex flex-wrap gap-2 mt-auto">
-              {project.tools.map((tool, tIdx) => (
-                <span
-                  key={tIdx}
-                  className="text-[#38bdf8] text-sm font-mono bg-white/10 px-2 py-1 rounded"
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* View More di bawah kanan */}
-      <div className="flex justify-end">
-        <Link
-          to="/projects"
-          className="text-[#38bdf8] font-bold text-lg border-b-2 border-[#38bdf8] hover:text-white hover:border-white transition-colors duration-300"
-        >
-          View More
-        </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

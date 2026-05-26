@@ -2,7 +2,7 @@ import React, { useRef, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import projectsData from '../../data/projectsData'; 
+import projectsData from '../../Data/projectsData'; 
 
 gsap.registerPlugin(ScrollTrigger);
 

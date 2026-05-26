@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap'; // Import gsap
-import certificatesData from '../../data/certificatesData';
+import certificatesData from '../../Data/certificatesData';
 
 const Certifications = () => {
   const scrollRef = useRef(null);

@@ -1,18 +1,20 @@
 import React from "react";
 import ProfileImg from "../../Assets/Profile_port.jpeg";
+import { useLanguage } from "../../Data/LanguageContext.js";
 
 const AboutSection = () => {
+  const { t } = useLanguage();
   return (
-    <section id="about" className="min-h-screen w-full flex flex-col justify-center py-20 bg-black overflow-hidden">
-      {/* Divider - Title Left, Line Right */}
-      <div className="flex items-center mb-16 px-8 md:px-16 lg:px-24">
-        <span className="pr-6 text-white font-bold text-5xl md:text-6xl tracking-tighter">
-          About<span className="text-[#38bdf8]">.</span>
+    <section id="about" className="min-h-screen md:h-screen w-full flex flex-col pt-20 md:pt-28 pb-24 md:pb-12 bg-black overflow-visible md:overflow-hidden">
+      {/* Divider - Fixed Position from top */}
+      <div className="flex items-center mb-8 md:mb-12 px-8 md:px-16 lg:px-24">
+        <span className="pr-6 text-white font-bold text-4xl md:text-6xl tracking-tighter">
+          {t.about.title}<span className="text-[#38bdf8]">.</span>
         </span>
         <div className="flex-1 h-[1px] bg-white/20"></div>
       </div>
 
-      <div className="w-full px-8 md:px-16 lg:px-24 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+      <div className="flex-1 flex flex-col md:flex-row items-center justify-center px-8 md:px-16 lg:px-24 gap-12 lg:gap-20">
         {/* Profile Image with Glassmorphism and Glow Effect */}
         <div className="relative group shrink-0">
           {/* Outer Neon Glow */}
@@ -29,15 +31,15 @@ const AboutSection = () => {
         </div>
 
         {/* Bio Content - Glassmorphism Aesthetic Text */}
-        <div className="flex-1 space-y-6 text-white/70 text-lg md:text-xl leading-relaxed font-light">
+        <div className="flex-1 space-y-6 text-white/70 text-lg md:text-xl leading-relaxed font-light text-justify">
           <p>
-            My name is <span className="text-white font-medium">Muhammad Naufal</span>, born on March 21, 2004, and currently 22 years old. I am a student at Pamulang University majoring in Informatics Engineering, currently in my 7th semester.
+            {t.about.p1.split("Muhammad Naufal")[0]}<span className="text-white font-medium">Muhammad Naufal</span>{t.about.p1.split("Muhammad Naufal")[1]}
           </p>
           <p>
-            I have a strong interest in the world of web development, especially <span className="text-[#38bdf8] italic font-medium">frontend development</span>. I enjoy learning how websites are designed and built, from creating responsive layouts to developing interactive user experiences. Exploring modern technologies like <span className="text-white">React</span> and <span className="text-white font-medium">Tailwind CSS</span> has become one of the things I truly enjoy.
+            {t.about.p2}
           </p>
           <p>
-            For me, web development is not only about writing code, but also about turning ideas into engaging digital experiences. I am always motivated to improve my skills, learn new technologies, and continue growing as a developer.
+            {t.about.p3}
           </p>
         </div>
       </div>
